@@ -77,7 +77,7 @@ class LeftSide extends StatelessWidget {
 
   onStartConfig(BuildContext context) {
     return () {
-      GoRouter.of(context).go('/gitconfig');
+      GoRouter.of(context).push('/gitconfig');
     };
   }
 }

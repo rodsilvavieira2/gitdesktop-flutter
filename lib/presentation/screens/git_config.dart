@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gitdesktop/presentation/components/back_btn.dart';
 import 'package:gitdesktop/presentation/config/screen_sizes.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,14 +10,19 @@ class GitConfigScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            LeftSide(),
-            RightSide(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          BackBtn(),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LeftSide(),
+                RightSide(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
