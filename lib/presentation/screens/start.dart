@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -66,12 +67,18 @@ class LeftSide extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               ),
             ),
-            onPressed: () {},
+            onPressed: onStartConfig(context),
             child: const Text('Vamos abrir um repositório!'),
           ),
         ],
       ),
     );
+  }
+
+  onStartConfig(BuildContext context) {
+    return () {
+      GoRouter.of(context).go('/gitconfig');
+    };
   }
 }
 
