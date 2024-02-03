@@ -51,12 +51,6 @@ class LeftSide extends StatelessWidget {
       ),
     );
   }
-
-  onStartConfig(BuildContext context) {
-    return () {
-      GoRouter.of(context).go('/gitconfig');
-    };
-  }
 }
 
 class RightSide extends StatelessWidget {
@@ -114,11 +108,17 @@ class GitCredentialsForm extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               ),
             ),
-            onPressed: () {},
+            onPressed: onOpenFirstOpenRepo(context),
             child: const Text('Confirmar!'),
           ),
         ],
       ),
     );
+  }
+
+  onOpenFirstOpenRepo(BuildContext context) {
+    return () {
+      GoRouter.of(context).go('/firstopenrepo');
+    };
   }
 }
