@@ -6,15 +6,27 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            LeftSide(),
-            RightSide(),
-          ],
-        ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned(
+            top: 20,
+            right: 20,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.help),
+            ),
+          ),
+          const Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LeftSide(),
+                RightSide(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -47,8 +59,8 @@ class LeftSide extends StatelessWidget {
                   height: 1.5,
                 ),
           ),
-          const SizedBox(height: 20),
-          FilledButton(
+          const SizedBox(height: 50),
+          OutlinedButton(
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                 const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
