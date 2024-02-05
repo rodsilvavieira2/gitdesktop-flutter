@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gitdesktop/presentation/config/router.dart';
 import 'package:gitdesktop/presentation/config/theme.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Must add this line.
+  await windowManager.ensureInitialized();
+
+  windowManager.setMinimumSize(const Size(1080, 800));
+
   runApp(const MyApp());
 }
 

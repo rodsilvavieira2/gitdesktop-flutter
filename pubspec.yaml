@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.9
   phosphor_flutter: ^2.0.1
   file_picker: ^6.1.1
+  window_manager: ^0.3.8
 
 dev_dependencies:
   flutter_test:
