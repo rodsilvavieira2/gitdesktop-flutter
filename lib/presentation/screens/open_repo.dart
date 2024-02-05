@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -26,7 +27,7 @@ class FirstOpenGitRepoScreen extends StatelessWidget {
                   body1: 'Abrir um repositório',
                   body2: 'Abrir um repositório existente no seu computador',
                   icon: PhosphorIconsRegular.folderOpen,
-                  onPress: () {},
+                  onPress: openLocalRepoFolder,
                 ),
                 const SizedBox(width: 20),
                 OpenRepoType(
@@ -60,6 +61,11 @@ class FirstOpenGitRepoScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  openLocalRepoFolder() async {
+    await FilePicker.platform
+        .getDirectoryPath(dialogTitle: "Selecione a pasta do repositório");
   }
 }
 
