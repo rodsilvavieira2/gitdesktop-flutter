@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gitdesktop/domain/contracts/data/preferencies.dart';
 import 'package:gitdesktop/domain/useCases/preferencies.dart';
 import 'package:gitdesktop/infra/data/shared_prefericiens.dart';
+import 'package:gitdesktop/presentation/config/router.dart';
 import 'package:gitdesktop/presentation/providers/first_time.dart';
 import 'package:gitdesktop/useCases/preferencies/get_first_time.dart';
 import 'package:gitdesktop/useCases/preferencies/set_first_time.dart';
@@ -24,10 +25,7 @@ void setUpInjection() {
 
   getIt.registerSingleton<FirstTimeProvider>(
     ChangeNotifierProvider<FirstTimeNotifier>(
-      (ref) => FirstTimeNotifier(
-        getIt(),
-        getIt(),
-      ),
+      (ref) => FirstTimeNotifier(getIt(), getIt(), router),
     ),
   );
 }

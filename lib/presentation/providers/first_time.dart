@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gitdesktop/domain/useCases/preferencies.dart';
-import 'package:gitdesktop/useCases/preferencies/set_first_time.dart';
+import 'package:go_router/go_router.dart';
 
 class FirstTimeNotifier extends ChangeNotifier {
   final PreferenciesGetFirstTime _getFirstTime;
-  final PreferencesSetFirstTimeUseCase _setFirstTime;
+  final PreferenciesSetFirstTime _setFirstTime;
+  final GoRouter _router;
 
-  FirstTimeNotifier(this._getFirstTime, this._setFirstTime);
+  FirstTimeNotifier(this._getFirstTime, this._setFirstTime, this._router);
 
-  Future<bool> isFirstTime() async {
-    final result = await _getFirstTime();
-    return result;
+  Future<void> isFirstTime() async {
+    final value = await _getFirstTime();
+
+    if (value) {
+      _router.go('/start');
+      return;
+    }
+
+    _router.go('/workspace');
   }
 
   Future<void> setFirstTime(bool value) async {

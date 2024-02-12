@@ -7,7 +7,7 @@ class PreferenciesGetFirstTimeUseCase implements PreferenciesGetFirstTime {
   PreferenciesGetFirstTimeUseCase(this._repo);
 
   @override
-  Future<bool> call() {
-    return _repo.isFirstTime();
+  Future<bool> call() async {
+    return await _repo.isFirstTime();
   }
 }

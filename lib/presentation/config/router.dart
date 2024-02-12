@@ -1,4 +1,5 @@
 import 'package:gitdesktop/presentation/screens/git_config.dart';
+import 'package:gitdesktop/presentation/screens/loading.dart';
 import 'package:gitdesktop/presentation/screens/open_repo.dart';
 import 'package:gitdesktop/presentation/screens/start.dart';
 import 'package:gitdesktop/presentation/screens/workspace.dart';
@@ -8,6 +9,10 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
+      builder: (context, state) => const LoadingScreen(),
+    ),
+    GoRoute(
+      path: '/start',
       builder: (context, state) => const StartScreen(),
     ),
     GoRoute(

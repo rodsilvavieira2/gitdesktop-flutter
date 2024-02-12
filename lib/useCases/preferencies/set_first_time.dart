@@ -8,6 +8,6 @@ class PreferencesSetFirstTimeUseCase implements PreferenciesSetFirstTime {
 
   @override
   Future<void> call(bool value) async {
-    return _repo.setFirstTime(value);
+    return await _repo.setFirstTime(value);
   }
 }
