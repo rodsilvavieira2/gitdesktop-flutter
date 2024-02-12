@@ -7,7 +7,7 @@ import 'package:window_manager/window_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Must add this line.
+
   await windowManager.ensureInitialized();
 
   windowManager.setMinimumSize(const Size(1080, 800));
