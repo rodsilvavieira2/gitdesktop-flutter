@@ -19,7 +19,8 @@ final router = GoRouter(
       builder: (context, state) => const FirstOpenGitRepoScreen(),
     ),
     GoRoute(
-        path: '/workspace',
-        builder: (context, state) => const WorkSpaceScreen()),
+      path: '/workspace',
+      builder: (context, state) => const WorkSpaceScreen(),
+    ),
   ],
 );

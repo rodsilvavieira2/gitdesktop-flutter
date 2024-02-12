@@ -32,5 +32,21 @@ class TabEntity extends Equatable {
     );
   }
 
+  copyWith({
+    String? id,
+    String? title,
+    bool? isSelected,
+    Function(int)? onClose,
+    Function(int)? onSelect,
+  }) {
+    return TabEntity(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      isSelected: isSelected ?? this.isSelected,
+      onClose: onClose ?? this.onClose,
+      onSelect: onSelect ?? this.onSelect,
+    );
+  }
+
   get isEmpty => id.isEmpty;
 }
