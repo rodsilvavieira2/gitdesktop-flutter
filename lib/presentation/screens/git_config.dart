@@ -118,7 +118,7 @@ class GitCredentialsForm extends StatelessWidget {
 
   onOpenFirstOpenRepo(BuildContext context) {
     return () {
-      GoRouter.of(context).go('/firstopenrepo');
+      GoRouter.of(context).push('/firstopenrepo');
     };
   }
 }
