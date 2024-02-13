@@ -178,7 +178,16 @@ class GitCredentialsFormState extends ConsumerState<GitCredentialsForm> {
           ),
         );
 
-        GoRouter.of(context).push('/firstopenrepo');
+        final provider = ref.read(getIt<FirstTimeProvider>());
+
+        provider
+            .saveGlobalUserCredentials(
+              _nameControl.text,
+              _emailControl.text,
+            )
+            .then(
+              (value) => {GoRouter.of(context).go('/openrepo')},
+            );
 
         return;
       }

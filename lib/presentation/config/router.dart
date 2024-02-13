@@ -20,7 +20,7 @@ final router = GoRouter(
       builder: (context, state) => const GitConfigScreen(),
     ),
     GoRoute(
-      path: '/firstopenrepo',
+      path: '/openrepo',
       builder: (context, state) => const FirstOpenGitRepoScreen(),
     ),
     GoRoute(

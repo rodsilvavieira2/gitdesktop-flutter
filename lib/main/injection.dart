@@ -45,6 +45,7 @@ void setUpInjection() {
         getIt(),
         router,
         getIt(),
+        getIt(),
       ),
     ),
   );
