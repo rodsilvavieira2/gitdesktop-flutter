@@ -10,7 +10,7 @@ class GitServiceProcess implements GitService {
     final name = await Process.run('git', GitUser.getGlobalNameCommand());
 
     if (email.exitCode != 0 || name.exitCode != 0) {
-      throw Exception('Error loading global user credentials');
+      return GitUser.empty();
     }
 
     return GitUser(

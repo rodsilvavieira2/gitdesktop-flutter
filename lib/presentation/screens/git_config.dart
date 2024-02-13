@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gitdesktop/main/injection.dart';
 import 'package:gitdesktop/presentation/components/back_btn.dart';
 import 'package:gitdesktop/presentation/config/screen_sizes.dart';
 import 'package:go_router/go_router.dart';
@@ -71,17 +73,41 @@ class RightSide extends StatelessWidget {
   }
 }
 
-class GitCredentialsForm extends StatefulWidget {
+class GitCredentialsForm extends ConsumerStatefulWidget {
   const GitCredentialsForm({super.key});
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return GitCredentialsFormState();
   }
 }
 
-class GitCredentialsFormState extends State<GitCredentialsForm> {
+class GitCredentialsFormState extends ConsumerState<GitCredentialsForm> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameControl = TextEditingController();
+  final TextEditingController _emailControl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    ref.read(getIt<FirstTimeProvider>()).loadGlobalUserCredentials().then(
+      (value) {
+        setState(() {
+          _emailControl.text = value.email;
+          _nameControl.text = value.name;
+        });
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _nameControl.dispose();
+    _emailControl.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,17 +126,32 @@ class GitCredentialsFormState extends State<GitCredentialsForm> {
         child: Column(
           children: [
             TextFormField(
+              controller: _nameControl,
               decoration: const InputDecoration(
                 labelText: 'Nome de usuário',
                 hintText: 'Digite seu nome de usuário',
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Digite um nome de usuário';
+                }
+                return null;
+              },
             ),
             const SizedBox(height: 20),
             TextFormField(
+              controller: _emailControl,
               decoration: const InputDecoration(
                 labelText: 'E-mail',
                 hintText: 'Digite seu e-mail',
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Digite um e-mail';
+                }
+
+                return null;
+              },
             ),
             const SizedBox(height: 50),
             OutlinedButton(
@@ -130,7 +171,23 @@ class GitCredentialsFormState extends State<GitCredentialsForm> {
 
   onOpenFirstOpenRepo(BuildContext context) {
     return () {
-      GoRouter.of(context).push('/firstopenrepo');
+      if (_formKey.currentState!.validate()) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Credenciais confirmadas!'),
+          ),
+        );
+
+        GoRouter.of(context).push('/firstopenrepo');
+
+        return;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Preencha os campos corretamente!'),
+        ),
+      );
     };
   }
 }

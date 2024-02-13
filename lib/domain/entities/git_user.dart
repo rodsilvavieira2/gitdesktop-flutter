@@ -9,6 +9,14 @@ class GitUser extends Equatable {
   @override
   List<Object> get props => [name, email];
 
+  set name(String value) {
+    name = value;
+  }
+
+  set email(String value) {
+    email = value;
+  }
+
   static getGlobalNameCommand() {
     final userName = ['config', '--global', 'user.name'];
 
