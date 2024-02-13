@@ -10,14 +10,32 @@ class GitUser extends Equatable {
   List<Object> get props => [name, email];
 
   static getGlobalNameCommand() {
-    final userName = ['git', 'config', '--global', 'user.name'];
+    final userName = ['config', '--global', 'user.name'];
 
     return userName;
   }
 
   static getGlobalEmailCommand() {
-    final userEmail = ['git', 'config', '--global', 'user.email'];
+    final userEmail = ['config', '--global', 'user.email'];
 
     return userEmail;
   }
+
+  setGlobalNameCommand() {
+    final userName = ['config', '--global', 'user.name', name];
+
+    return userName;
+  }
+
+  setGlobalEmailCommand() {
+    final userEmail = ['config', '--global', 'user.email', email];
+
+    return userEmail;
+  }
+
+  factory GitUser.empty() {
+    return const GitUser(name: '', email: '');
+  }
+
+  bool get isEmpty => name.isEmpty && email.isEmpty;
 }

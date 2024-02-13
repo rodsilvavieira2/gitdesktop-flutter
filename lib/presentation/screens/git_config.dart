@@ -71,8 +71,17 @@ class RightSide extends StatelessWidget {
   }
 }
 
-class GitCredentialsForm extends StatelessWidget {
+class GitCredentialsForm extends StatefulWidget {
   const GitCredentialsForm({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return GitCredentialsFormState();
+  }
+}
+
+class GitCredentialsFormState extends State<GitCredentialsForm> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -86,32 +95,35 @@ class GitCredentialsForm extends StatelessWidget {
 
     return SizedBox(
       width: width,
-      child: Column(
-        children: [
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Nome de usuário',
-              hintText: 'Digite seu nome de usuário',
-            ),
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'E-mail',
-              hintText: 'Digite seu e-mail',
-            ),
-          ),
-          const SizedBox(height: 50),
-          OutlinedButton(
-            style: ButtonStyle(
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Nome de usuário',
+                hintText: 'Digite seu nome de usuário',
               ),
             ),
-            onPressed: onOpenFirstOpenRepo(context),
-            child: const Text('Confirmar!'),
-          ),
-        ],
+            const SizedBox(height: 20),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'E-mail',
+                hintText: 'Digite seu e-mail',
+              ),
+            ),
+            const SizedBox(height: 50),
+            OutlinedButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                  const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                ),
+              ),
+              onPressed: onOpenFirstOpenRepo(context),
+              child: const Text('Confirmar!'),
+            ),
+          ],
+        ),
       ),
     );
   }
